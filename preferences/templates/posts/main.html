@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% load materializecss %}
+
+
+{% block css %}
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.1/css/materialize.min.css"
+    integrity="sha256-qj3p6P1fJIV+Ndv7RW1ovZI2UhOuboj9GcODzcNFIN8=" crossorigin="anonymous" />
+{% endblock css %}
+
+{% block title %}Main Page{% endblock title %}
+
+{% block content %}
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="card-panel green lighten-2">{{message}}</div>
+    {% endfor %}
+
+{% endif %}
+
+
+<h1>Song Application</h1>
+<form action="" method="POST">
+    {% csrf_token %}
+    <!-- eger method=POST yazirsansa mutleq csrf_token yazmalisan yadindan cixmasin  -->
+    {{form|materializecss}}
+    <br>
+    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+        <i class="material-icons right">send</i>
+    </button>
+</form>
+{% endblock content %}
+
+
+{% block scripts %}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.1/js/materialize.min.js"
+    integrity="sha256-SrBfGi+Zp2LhAvy9M1bWOCXztRU9Ztztxmu5BcYPcPE=" crossorigin="anonymous"></script>
+
+<script>
+    $(document).ready(function () {
+
+        // Initialize materialize data picker
+        $('.datepicker').datepicker({
+            'format': 'yyyy-mm-dd'
+        });
+        $('select').formSelect();
+
+    });
+</script>
+{% endblock scripts %}
